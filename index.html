@@ -3,246 +3,209 @@
 <head>
   <meta charset="UTF-8">
   <title>Encuesta</title>
-
-  <!-- Fuente moderna -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      margin: 0; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #667eea, #764ba2);
     }
-
     .card {
       background: white;
-      width: 100%;
-      max-width: 520px;
+      width: 100%; max-width: 520px;
       padding: 30px;
       border-radius: 16px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
       text-align: center;
       animation: fadeIn 0.4s ease;
     }
-
-    h2 {
-      margin-top: 0;
-      font-weight: 600;
-      color: #333;
-    }
-
-    p {
-      color: #555;
-      font-size: 18px;
-      margin-bottom: 25px;
-    }
-
+    h2 { margin-top: 0; font-weight: 600; color: #333; }
+    p { color: #555; font-size: 18px; margin-bottom: 25px; }
     .opciones button {
-      width: 100%;
-      padding: 14px;
-      margin: 10px 0;
-      font-size: 16px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      background: #f3f4f6;
-      transition: all 0.2s ease;
+      width: 100%; padding: 14px; margin: 10px 0;
+      font-size: 16px; border: none; border-radius: 10px; cursor: pointer;
+      background: #f3f4f6; transition: all 0.2s ease;
     }
-
     .opciones button:hover {
-      background: #667eea;
-      color: white;
-      transform: translateY(-2px);
+      background: #667eea; color: white; transform: translateY(-2px);
     }
-
-    img {
-      max-width: 100%;
-      margin-top: 20px;
-      border-radius: 12px;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    .mensaje-error { color: #e74c3c; font-weight: 600; margin-bottom: 20px; font-size: 16px; }
+    img { max-width: 100%; margin-top: 20px; border-radius: 12px; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
   </style>
 </head>
-
 <body>
-
   <div id="app"></div>
 
   <script>
     const preguntas = [
-        // Pregunta 1
-        {
-            texto: "¿Qué prefiere hacer Sara el fin de semana?",
-            opciones: {
-            A: "Leer",
-            B: "Salir de fiesta",
-            C: "Ver series",
-            D: "Hacer deporte"
-            }
-        },
-
-        // Pregunta 2
-        {
-            texto: "¿Qué artistas del top en Spotify de Sara te gusta más?",
-            opciones: {
-            A: "Mitski",
-            B: "Ethel Cain",
-            C: "Taylor Swift",
-            D: "Lana del Rey"
-            }
-        },
-        
-        // Pregunta 3 (quiz)
-        {
-            texto: "¿Qué canción solía ponerse Sara para ir a clase y animarse la mañana?",
-            tipo: "quiz",
-            correcta: "C",
-            opciones: {
-                A: "Can`t Stop The Feeling - Justin Timberlake",
-                B: "Saoko - Rosalía",
-                C: "Happy - Pharrell Williams",
-                D: "WAP - Nicki Minaj"
-            }
-        },
-
-
-        // Pregunta 4
-        {
-            texto: "¿Cuál es tu canción favorita de Sara en el piano?",
-            opciones: {
-            A: "Danza Kuduro",
-            B: "Orilla",
-            C: "What Is This Feeling?",
-            D: "Fiebre"
-            }
-        },
-
-        // Pregunta 5 (quiz)
-        {
-            texto: "¿Qué película estaba viendo la compañera de Sara en la oficina mientras comía una ensalada César y respiraba muy fuerte?",
-            tipo: "quiz",
-            correcta: "C",
-            opciones: {
-                A: "Kung Fu Panda",
-                B: "Buscando a Nemo",
-                C: "Gru, mi villano favorito",
-                D: "Los Minions"
-            }
-        },
-
-        // Pregunta 6 (quiz)
-        {
-            texto: "¿Qué es lo que Sara ansía que le traiga Andy?",
-            tipo: "quiz",
-            correcta: "B",
-            opciones: {
-                A: "Un bollycao",
-                B: "SU medalla de la hermandad de Afligidos",
-                C: "Juegos de la Play",
-                D: "Otro bollycao"
-            }
-        },
-
+            // PREGUNTA 1
+      {
+        texto: "¿Qué prefiere hacer Sara el fin de semana?",
+        opciones: { A:"Irse a la montaña de ruta", B:"Quedarse en casa viendo alguna serie", C:"Llamar a Xino pa que le traiga cosas", D:"Jugar a los bolos" },
+        puntos: { A:"aventurera", B:"cantarina", C:"trabajadora", D:"conductora" }
+      },
+            // PREGUNTA 2
+      {
+        texto: "¿Qué artistas del top en Spotify de Sara te gusta más?",
+        opciones: { A:"Mitski", B:"Ethel Cain", C:"Taylor Swift", D:"Lana del Rey" },
+        puntos: { A:"cantarina", B:"ladrona", C:"conductora", D:"trabajadora" }
+      },
+            // PREGUNTA 3
+      {
+        texto: "¿Qué canción solía ponerse Sara para ir a clase y animarse la mañana?",
+        opciones: { A:"Can`t Stop The Feeling", B:"Saoko", C:"Happy", D:"¿Hola?" },
+        puntos: { A:"aventurera", B:"conductora", C:"cantarina", D:"seria" }
+      },
+            // PREGUNTA 4
+      {
+        texto: "¿Cuál es tu canción favorita de Sara en el piano?",
+        opciones: { A:"Julia, es tu cumple", B:"Orilla", C:"Flow 2000", D:"Fiebre" },
+        puntos: { A:"choni", B: ["trabajadora", "ladrona"], C:"conductora", D:"choni" }
+      },
+            // PREGUNTA 5
+      {
+        texto: "Qué alimento/comida es famosamente conocido que Sara robe mientras su madre no mira? (solo una respuesta correcta)",
+        tipo:"quiz", correcta:"D",
+        opciones:{ A:"Hummus", B:"Guacamole", C:"Piquitos", D:"Croquetas" }
+      },
+            // PREGUNTA 6
+      {
+        texto: "¿Qué es lo que Sara ansía que le traiga Andy?",
+        opciones:{ A:"Un bollycao", B:"SU medalla de la hermandad de Afligidos", C:"Juegos de la Play", D:"Otro bollycao" },
+        puntos: { A:"aventurera", B: "conductora", C:"cantarina", D:"choni" }
+      },
+            // PREGUNTA 7
+      {
+        texto: "¿Cuál es el nombre del famoso establecimiento de San Fernando donde están los dulces que le gustan a Sara?",
+        opciones:{ A:"Mokalia", B:"Cash Fresh", C:"El Pilar", D:"Pero qué me estás contando" },
+        puntos: { A: "ladrona", B: "cantarina", C:"trabajadora", D:"choni" }
+      },
+            // PREGUNTA 8
+      {
+        texto: "¿Cúal es tu plato favorito de la chef Sara?",
+        opciones:{ A:"Tostadas puerro (estilo palestino)", B:"Macarrones con lentajas y verduritas", C:"Cualquiera, todo lo que hace es perfecto", D:"" },
+        puntos: { A:"cantarina", B: "trabajadora", C:["choni", "ladrona"], D:"conductora" }
+      },
+            // PREGUNTA 9
+      {
+        texto: "¿Cuál es tu juego favorito? (obviamente de los que juega Sara)",
+        opciones:{ A:"Los Sims", B:"¿Hola? ¿Cómo que videojuego? Parchís siempre.", C:"Uf, claramente es el Rummikub", D:"A Sara no le gustan los juegos" },
+        puntos: { A: "trabajadora", B: "choni", C:"cantarina", D:"seria" }
+      },
+            // PREGUNTA 10
+      {
+        texto: "Cuál era el nombre de la planta amarilla de Sara? (solo una respuesta correcta)",
+        tipo:"quiz", correcta:"B",
+        opciones:{ A:"Matilde", B:"Gerarda", C:"Violeta", D:"Margarita Kalifata" }
+      },
+            // PREGUNTA 11
+      {
+        texto: "¿Cómo se llamaba la calle donde vivían Sara y Ángel? (solo una respuesta correcta)",
+        tipo:"quiz", correcta:"B",
+        opciones:{ A:"Claramente vivían en la calle Sierpes", B:"Calle Imperial", C:"En cualquier calle de los Remedios, para irse a la feria prontito", D:"Calle Águilas" }
+      },
+            // PREGUNTA 12
+      {
+        texto: "¿Dónde escondió Sara el bizcocho de Andy en campo Xino?",
+        opciones:{ A:"Justo al lado de la contesa", B:"Debajo del coche", C:"En la piscina", D:"No había ningún bizcocho, no sé de que me estás hablando..." },
+        puntos: { A: "choni", B: "conductora", C:"cantarina", D:"seria" }
+      },
+            // PREGUNTA 13
+      {
+        texto: "¿En qué país ocurrió el trágico evento donde Javier perdió el tren por ir a comprar unos helados?",
+        opciones:{ A:"China", B:"Rumanía", C:"Perú", D:"Ofu cuánto le queda a esto" },
+        puntos: { A: "ladrona", B: "cantarina", C:"trabajadora", D:"seria" }
+      },
     ];
 
     let indice = 0;
-    const conteo = { A: 0, B: 0, C: 0, D: 0 };
+    const conteo = { cantarina:0, ladrona:0, conductora:0, choni:0, trabajadora:0, seria:0 };
     const app = document.getElementById("app");
 
-    function mostrarPregunta() {
+    function mostrarPregunta(mensaje="") {
       const p = preguntas[indice];
-
       app.innerHTML = `
         <div class="card">
-          <h2>Pregunta ${indice + 1} de ${preguntas.length}</h2>
+          ${mensaje ? `<div class="mensaje-error">${mensaje}</div>` : ""}
+          <h2>Pregunta ${indice+1} de ${preguntas.length}</h2>
           <p>${p.texto}</p>
           <div class="opciones">
-            ${Object.entries(p.opciones).map(
-              ([clave, texto]) =>
-                `<button onclick="responder('${clave}')">${clave}) ${texto}</button>`
-            ).join("")}
+            ${Object.entries(p.opciones).map(([clave,texto])=>`<button onclick="responder('${clave}')">${clave}) ${texto}</button>`).join("")}
           </div>
         </div>
       `;
     }
 
     function responder(opcion) {
-        const pregunta = preguntas[indice];
+      const pregunta = preguntas[indice];
 
-        if (pregunta.tipo === "quiz") {
-            if (opcion !== pregunta.correcta) {
-            alert("¡MAL!, inténtalo de nuevo");
-            return
-            }
-
-        } else {
-            conteo[opcion]++;
+      if (pregunta.tipo === "quiz") {
+        if (opcion !== pregunta.correcta) {
+          app.innerHTML = `
+            <div class="card">
+              <div class="mensaje-error">
+                ¡MAL! Parece que no conoces la suficiente a Sara... Reintenta el cuestionario, anda.
+              </div>
+              <button onclick="reiniciar()">Reintentar</button>
+            </div>
+          `;
+          return;
         }
 
-        indice++;
+      } else {
+        const veredicto = pregunta.puntos[opcion];
 
-        if (indice < preguntas.length)
-        {
-            mostrarPregunta();
-        } else {
-            mostrarResultado();
+        if (Array.isArray(veredicto)) {
+          veredicto.forEach(v => {
+            if (conteo[v] !== undefined) conteo[v]++;
+          });
+        } else if (veredicto) {
+          if (conteo[veredicto] !== undefined) conteo[veredicto]++;
         }
+      }
+
+      indice++;
+
+      if (indice < preguntas.length) {
+        mostrarPregunta();
+      } else {
+        mostrarResultado();
+      }
     }
 
 
-    function mostrarResultado() {
-      const veredicto = Object.keys(conteo).reduce((a, b) =>
-        conteo[a] > conteo[b] ? a : b
-      );
+    function reiniciar() {
+      indice = 0;
+      for (let key in conteo) conteo[key]=0;
+      mostrarPregunta();
+    }
 
+    function mostrarResultado() {
+      const veredictoFinal = Object.keys(conteo).reduce((a,b)=>conteo[a]>conteo[b]?a:b);
       const resultados = {
-        A: {
-          texto: "¡Enhorabuena! Te ha tocado la Sara cantarina. Eres una persona tranquila y te gustan los planes caseros.",
-          imagen: "img/A.png"
-        },
-        B: {
-          texto: "¡Enhorabuena! Te ha tocado la Sara ladrona de croquetas. Sueles ser sociable y espontánea.",
-          imagen: "img/B.png"
-        },
-        C: {
-          texto: "¡Enhorabuena! Te ha tocado la Sara conductora. Confías en tus amigos y te gusta tener el control.",
-          imagen: "img/C.png"
-        },
-        D: {
-          texto: "¡Enhorabuena! Te ha tocado la Sara choni. Eres atrevida, directa y sin miedo al qué dirán.",
-          imagen: "img/D.png"
-        }
+        cantarina: { texto:"¡Enhorabuena! Te ha tocado la Sara cantarina.", imagen:"img/A.png" },
+        ladrona: { texto:"¡Enhorabuena! Te ha tocado la Sara ladrona de croquetas.", imagen:"img/ladrona.jpeg" },
+        conductora: { texto:"¡Enhorabuena! Te ha tocado la Sara conductora.", imagen:"img/conductora.jpeg" },
+        choni: { texto:"¡Enhorabuena! Te ha tocado la Sara cani.", imagen:"img/choni.jpeg" },
+        trabajadora: { texto:"¡Enhorabuena! Te ha tocado la Sara currante. Eres una persona trabajadora y constante, que sabe fijarse sus objetivos y tiene las cosas claras.", imagen:"img/trabajadora.jpeg" },
+        seria: { texto:"¡Enhorabuena! Te ha tocado la Sara seria. Bueno, no enhorabuena especialmente... Has respondido muy siesamente y Sara te juzga. Tal vez deberías responder otras opciones.", imagen:"img/seria.jpeg" },
+        borracha: { texto:"¡Enhorabuena! Te ha tocado la Sara no se que poner. ola.", imagen:"img/borracha.jpeg" },
+        aventurera: { texto:"¡Enhorabuena! Te ha tocado la Sara aventurera. Siempre estás dispuestx a hacer locuritas y nunca dices que no a un plan.", imagen:"img/aventurera.jpeg" },
       };
 
       app.innerHTML = `
         <div class="card">
           <h2>Tu resultado</h2>
-          <p>${resultados[veredicto].texto}</p>
-          <img src="${resultados[veredicto].imagen}">
+          <p>${resultados[veredictoFinal].texto}</p>
+          <img src="${resultados[veredictoFinal].imagen}">
         </div>
       `;
     }
 
     mostrarPregunta();
   </script>
-
 </body>
 </html>
