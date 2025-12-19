@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Encuesta</title>
+
+  <!-- Fuente moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    .card {
+      background: white;
+      width: 100%;
+      max-width: 520px;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-weight: 600;
+      color: #333;
+    }
+
+    p {
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    .opciones button {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #f3f4f6;
+      transition: all 0.2s ease;
+    }
+
+    .opciones button:hover {
+      background: #667eea;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    img {
+      max-width: 100%;
+      margin-top: 20px;
+      border-radius: 12px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app"></div>
+
+  <script>
+    const preguntas = [
+        // Pregunta 1
+        {
+            texto: "¿Qué prefiere hacer Sara el fin de semana?",
+            opciones: {
+            A: "Leer",
+            B: "Salir de fiesta",
+            C: "Ver series",
+            D: "Hacer deporte"
+            }
+        },
+
+        // Pregunta 2
+        {
+            texto: "¿Qué artistas del top en Spotify de Sara te gusta más?",
+            opciones: {
+            A: "Mitski",
+            B: "Ethel Cain",
+            C: "Taylor Swift",
+            D: "Lana del Rey"
+            }
+        },
+        
+        // Pregunta 3 (quiz)
+        {
+            texto: "¿Qué canción solía ponerse Sara para ir a clase y animarse la mañana?",
+            tipo: "quiz",
+            correcta: "C",
+            opciones: {
+                A: "Can`t Stop The Feeling - Justin Timberlake",
+                B: "Saoko - Rosalía",
+                C: "Happy - Pharrell Williams",
+                D: "WAP - Nicki Minaj"
+            }
+        },
+
+
+        // Pregunta 4
+        {
+            texto: "¿Cuál es tu canción favorita de Sara en el piano?",
+            opciones: {
+            A: "Danza Kuduro",
+            B: "Orilla",
+            C: "What Is This Feeling?",
+            D: "Fiebre"
+            }
+        },
+
+        // Pregunta 5 (quiz)
+        {
+            texto: "¿Qué película estaba viendo la compañera de Sara en la oficina mientras comía una ensalada César y respiraba muy fuerte?",
+            tipo: "quiz",
+            correcta: "C",
+            opciones: {
+                A: "Kung Fu Panda",
+                B: "Buscando a Nemo",
+                C: "Gru, mi villano favorito",
+                D: "Los Minions"
+            }
+        },
+
+        // Pregunta 6 (quiz)
+        {
+            texto: "¿Qué es lo que Sara ansía que le traiga Andy?",
+            tipo: "quiz",
+            correcta: "B",
+            opciones: {
+                A: "Un bollycao",
+                B: "SU medalla de la hermandad de Afligidos",
+                C: "Juegos de la Play",
+                D: "Otro bollycao"
+            }
+        },
+
+    ];
+
+    let indice = 0;
+    const conteo = { A: 0, B: 0, C: 0, D: 0 };
+    const app = document.getElementById("app");
+
+    function mostrarPregunta() {
+      const p = preguntas[indice];
+
+      app.innerHTML = `
+        <div class="card">
+          <h2>Pregunta ${indice + 1} de ${preguntas.length}</h2>
+          <p>${p.texto}</p>
+          <div class="opciones">
+            ${Object.entries(p.opciones).map(
+              ([clave, texto]) =>
+                `<button onclick="responder('${clave}')">${clave}) ${texto}</button>`
+            ).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function responder(opcion) {
+        const pregunta = preguntas[indice];
+
+        if (pregunta.tipo === "quiz") {
+            if (opcion !== pregunta.correcta) {
+            alert("¡MAL!, inténtalo de nuevo");
+            return
+            }
+
+        } else {
+            conteo[opcion]++;
+        }
+
+        indice++;
+
+        if (indice < preguntas.length)
+        {
+            mostrarPregunta();
+        } else {
+            mostrarResultado();
+        }
+    }
+
+
+    function mostrarResultado() {
+      const veredicto = Object.keys(conteo).reduce((a, b) =>
+        conteo[a] > conteo[b] ? a : b
+      );
+
+      const resultados = {
+        A: {
+          texto: "¡Enhorabuena! Te ha tocado la Sara cantarina. Eres una persona tranquila y te gustan los planes caseros.",
+          imagen: "img/A.png"
+        },
+        B: {
+          texto: "¡Enhorabuena! Te ha tocado la Sara ladrona de croquetas. Sueles ser sociable y espontánea.",
+          imagen: "img/B.png"
+        },
+        C: {
+          texto: "¡Enhorabuena! Te ha tocado la Sara conductora. Confías en tus amigos y te gusta tener el control.",
+          imagen: "img/C.png"
+        },
+        D: {
+          texto: "¡Enhorabuena! Te ha tocado la Sara choni. Eres atrevida, directa y sin miedo al qué dirán.",
+          imagen: "img/D.png"
+        }
+      };
+
+      app.innerHTML = `
+        <div class="card">
+          <h2>Tu resultado</h2>
+          <p>${resultados[veredicto].texto}</p>
+          <img src="${resultados[veredicto].imagen}">
+        </div>
+      `;
+    }
+
+    mostrarPregunta();
+  </script>
+
+</body>
+</html>
