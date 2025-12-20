@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Encuesta</title>
+  <title>Encuesta Bilingüe</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
@@ -39,199 +39,290 @@
 <body>
   <div id="app"></div>
 
-  <script>
-    const preguntas = [
-            // PREGUNTA 1
-      {
-        texto: "¿Qué prefiere hacer Sara el fin de semana?",
-        opciones: { A:"Irse a la montaña de ruta", B:"Quedarse en casa viendo alguna serie y canturreando como una sirena", C:"Llamar a Xino pa que le traiga cosas", D:"Jugar a los bolos" },
-        puntos: { A:"aventurera", B:"cantarina", C:["trabajadora", "ladrona"], D:"conductora" }
-      },
-            // PREGUNTA 2
-      {
-        texto: "¿Qué artistas del top en Spotify de Sara te gusta más?",
-        opciones: { A:"Mitski", B:"Ethel Cain", C:"Taylor Swift", D:"Lana del Rey" },
-        puntos: { A:"cantarina", B:["ladrona", "rapada"], C:"conductora", D:"trabajadora" }
-      },
-            // PREGUNTA 3
-      {
-        texto: "¿Qué canción solía ponerse Sara para ir a clase y animarse la mañana? (ELIGE BIEN)",
-        tipo:"quiz", correcta:"C",
-        opciones: { A:"Can`t Stop The Feeling", B:"Saoko", C:"Happy", D:"¿Hola?" },
-      },
-            // PREGUNTA 4
-      {
-        texto: "¿Cuál es tu canción favorita de Sara en el piano?",
-        opciones: { A:"Julia, es tu cumple", B:"Orilla", C:"Flow 2000", D:"Fiebre" },
-        puntos: { A:"choni", B: ["trabajadora", "cantarina"], C:"conductora", D:["choni", "rapada"] }
-      },
-            // PREGUNTA 5
-      {
-        texto: "Qué alimento/comida es famosamente conocido que Sara robe mientras su madre no mira? (ELIGE BIEN)",
-        tipo:"quiz", correcta:"D",
-        opciones:{ A:"Hummus", B:"Guacamole", C:"Piquitos", D:"Croquetas" }
-      },
-            // PREGUNTA 6
-      {
-        texto: "¿Qué es lo que Sara ansía que le traiga Andy?",
-        opciones:{ A:"Un bollycao", B:"SU medalla de la hermandad de Afligidos", C:"Juegos de la Play", D:"Otro bollycao" },
-        puntos: { A:"aventurera", B: ["conductora", "ladrona"], C:"seria", D:["choni", "chad"] }
-      },
-            // PREGUNTA 7
-      {
-        texto: "¿Cuál es el nombre del famoso establecimiento de San Fernando donde están los dulces que le gustan a Sara?",
-        opciones:{ A:"Mokalia", B:"Cash Fresh", C:"El Pilar", D:"Pero qué me estás contando" },
-        puntos: { A: "ladrona", B: "chad", C:"trabajadora", D: ["seria", "rapada"]
- }
-      },
-            // PREGUNTA 8
-      {
-        texto: "¿Cúal es tu plato favorito de la chef Sara?",
-        opciones:{ A:"Tostadas puerro (estilo palestino)", B:"Macarrones con lentajas y verduritas", C:"Cualquiera, todo lo que hace es perfecto", D:"El hummus de Yoli" },
-        puntos: { A:"cantarina", B: "trabajadora", C:["aventurera", "chad"], D:"conductora" }
-      },
-            // PREGUNTA 9
-      {
-        texto: "¿Cuál es tu juego favorito? (obviamente de los que juega Sara)",
-        opciones:{ A:"Los Sims", B:"No me rayes, el parchís y ya.", C:"Uf, claramente es el Rummikub", D:"A Sara no le gustan los juegos" },
-        puntos: { A: "aventurera", B: ["choni", "rapada"], C:"rapada", D: ["seria", "chad"]
- }
-      },
-            // PREGUNTA 10
-      {
-        texto: "Cuál era el nombre de la planta amarilla de Sara? (ELIGE BIEN)",
-        tipo:"quiz", correcta:"B",
-        opciones:{ A:"Matilde", B:"Gerarda", C:"Violeta", D:"Margarita Kalifata" }
-      },
-            // PREGUNTA 11
-      {
-        texto: "¿Cómo se llamaba la calle donde vivían Sara y Ángel? (ELIGE BIEN)",
-        tipo:"quiz", correcta:"B",
-        opciones:{ A:"Claramente vivían en la calle Sierpes", B:"Calle Imperial", C:"En cualquier calle de los Remedios, para irse a la feria prontito", D:"Calle Águilas" }
-      },
-            // PREGUNTA 12
-      {
-        texto: "¿Dónde escondió Sara el bizcocho de Andy en campo Xino?",
-        opciones:{ A:"Justo al lado de la contesa", B:"Debajo del coche", C:"En la piscina", D:"No había ningún bizcocho, no sé de que me estás hablando..." },
-        puntos: { A: "choni", B: "conductora", C:"aventurera", D:["seria", "chad"] }
-      },
-            // PREGUNTA 13
-      {
-        texto: "¿En qué país ocurrió el trágico evento donde Javier perdió el tren por ir a comprar unos helados?",
-        opciones:{ A:"China", B:"Rumanía", C:"Perú", D:"Ofu cuánto le queda a esto" },
-        puntos: { A: "ladrona", B: "cantarina", C:"rapada", D: ["seria", "chad"]
- }
-      },
-    ];
+<script>
+let idioma = null;
+let indice = 0;
+const conteo = { aventurera:0, cantarina:0, chad:0, choni:0, conductora:0, dibujo:0, kayakera:0, rapada:0, seria:0, trabajadora:0 };
+const app = document.getElementById("app");
 
-    let indice = 0;
-    const conteo = { aventurera:0, cantarina:0, chad:0, choni:0, conductora:0, dibujo:0, kayakera:0, rapada:0, seria:0, trabajadora:0, };
-    const app = document.getElementById("app");
+const preguntasES = [
+  {
+    texto:"¿Qué prefiere hacer Sara el fin de semana?",
+    opciones:{A:"Irse a la montaña de ruta", B:"Quedarse en casa viendo alguna serie y canturreando como una sirena", C:"Llamar a Xino pa que le traiga cosas", D:"Jugar a los bolos"},
+    puntos:{A:"aventurera", B:"cantarina", C:["trabajadora","ladrona"], D:"conductora"}
+  },
+  {
+    texto:"¿Qué artistas del top en Spotify de Sara te gusta más?",
+    opciones:{A:"Mitski", B:"Ethel Cain", C:"Taylor Swift", D:"Lana del Rey"},
+    puntos:{A:"cantarina", B:["ladrona","rapada"], C:"conductora", D:"trabajadora"}
+  },
+  {
+    texto:"¿Qué canción solía ponerse Sara para ir a clase y animarse la mañana? (ELIGE BIEN)",
+    tipo:"quiz", correcta:"C",
+    opciones:{A:"Can`t Stop The Feeling", B:"Saoko", C:"Happy", D:"¿Hola?"}
+  },
+  {
+    texto:"¿Cuál es tu canción favorita de Sara en el piano?",
+    opciones:{A:"Julia, es tu cumple", B:"Orilla", C:"Flow 2000", D:"Fiebre"},
+    puntos:{A:"choni", B:["trabajadora","cantarina"], C:"conductora", D:["choni","rapada"]}
+  },
+  {
+    texto:"Qué alimento/comida es famosamente conocido que Sara robe mientras su madre no mira? (ELIGE BIEN)",
+    tipo:"quiz", correcta:"D",
+    opciones:{A:"Hummus", B:"Guacamole", C:"Piquitos", D:"Croquetas"}
+  },
+  {
+    texto:"¿Qué es lo que Sara ansía que le traiga Andy?",
+    opciones:{A:"Un bollycao", B:"SU medalla de la hermandad de Afligidos", C:"Juegos de la Play", D:"Otro bollycao"},
+    puntos:{A:"aventurera", B:["conductora","ladrona"], C:"seria", D:["choni","chad"]}
+  },
+  {
+    texto:"¿Cuál es el nombre del famoso establecimiento de San Fernando donde están los dulces que le gustan a Sara?",
+    opciones:{A:"Mokalia", B:"Cash Fresh", C:"El Pilar", D:"Pero qué me estás contando"},
+    puntos:{A:"ladrona", B:"chad", C:"trabajadora", D:["seria","rapada"]}
+  },
+  {
+    texto:"¿Cuál es tu plato favorito de la chef Sara?",
+    opciones:{A:"Tostadas puerro (estilo palestino)", B:"Macarrones con lentajas y verduritas", C:"Cualquiera, todo lo que hace es perfecto", D:"El hummus de Yoli"},
+    puntos:{A:"cantarina", B:"trabajadora", C:["aventurera","chad"], D:"conductora"}
+  },
+  {
+    texto:"¿Cuál es tu juego favorito? (obviamente de los que juega Sara)",
+    opciones:{A:"Los Sims", B:"No me rayes, el parchís y ya.", C:"Uf, claramente es el Rummikub", D:"A Sara no le gustan los juegos"},
+    puntos:{A:"aventurera", B:["choni","rapada"], C:"rapada", D:["seria","chad"]}
+  },
+  {
+    texto:"Cuál era el nombre de la planta amarilla de Sara? (ELIGE BIEN)",
+    tipo:"quiz", correcta:"B",
+    opciones:{A:"Matilde", B:"Gerarda", C:"Violeta", D:"Margarita Kalifata"}
+  },
+  {
+    texto:"¿Cómo se llamaba la calle donde vivían Sara y Ángel? (ELIGE BIEN)",
+    tipo:"quiz", correcta:"B",
+    opciones:{A:"Claramente vivían en la calle Sierpes", B:"Calle Imperial", C:"En cualquier calle de los Remedios, para irse a la feria prontito", D:"Calle Águilas"}
+  },
+  {
+    texto:"¿Dónde escondió Sara el bizcocho de Andy en campo Xino?",
+    opciones:{A:"Justo al lado de la contesa", B:"Debajo del coche", C:"En la piscina", D:"No había ningún bizcocho, no sé de que me estás hablando..."},
+    puntos:{A:"choni", B:"conductora", C:"aventurera", D:["seria","chad"]}
+  },
+  {
+    texto:"¿En qué país ocurrió el trágico evento donde Javier perdió el tren por ir a comprar unos helados?",
+    opciones:{A:"China", B:"Rumanía", C:"Perú", D:"Ofu cuánto le queda a esto"},
+    puntos:{A:"ladrona", B:"cantarina", C:"rapada", D:["seria","chad"]}
+  }
+];
 
-    function mostrarPregunta(mensaje="") {
-      const p = preguntas[indice];
-      app.innerHTML = `
-        <div class="card">
-          ${mensaje ? `<div class="mensaje-error">${mensaje}</div>` : ""}
-          <h2>Pregunta ${indice+1} de ${preguntas.length}</h2>
-          <p>${p.texto}</p>
-          <div class="opciones">
-            ${Object.entries(p.opciones).map(([clave,texto])=>`<button onclick="responder('${clave}')">${clave}) ${texto}</button>`).join("")}
-          </div>
-        </div>
-      `;
-    }
+const preguntasEN = [
+  { texto:"What does Sara prefer to do on the weekend?",
+  opciones:{A:"Go hiking in the mountains", B:"Stay home watching some TV series and singing like a mermaid", C:"Call Xino to bring her things", D:"Play bowling"},
+  puntos:{A:"aventurera", B:"cantarina", C:["trabajadora","ladrona"], D:"conductora"}
+},
+  {
+    texto:"Which artists from Sara's Spotify top do you like the most?",
+    opciones:{A:"Mitski", B:"Ethel Cain", C:"Taylor Swift", D:"Lana del Rey"},
+    puntos:{A:"cantarina", B:["ladrona","rapada"], C:"conductora", D:"trabajadora"}
+  },
+  {
+    texto:"Which song did Sara usually listen to before class to cheer herself up? (CHOOSE CAREFULLY)",
+    tipo:"quiz", correcta:"C",
+    opciones:{A:"Can`t Stop The Feeling", B:"Saoko", C:"Happy", D:"Hello?"}
+  },
+  {
+    texto:"Which is your favorite Sara song on the piano?",
+    opciones:{A:"Julia, it's your birthday", B:"Orilla", C:"Flow 2000", D:"Fiebre"},
+    puntos:{A:"choni", B:["trabajadora","cantarina"], C:"conductora", D:["choni","rapada"]}
+  },
+  {
+    texto:"Which food/snack is famously known that Sara steals when her mom is not looking? (CHOOSE CAREFULLY)",
+    tipo:"quiz", correcta:"D",
+    opciones:{A:"Hummus", B:"Guacamole", C:"Piquitos", D:"Croquetas"}
+  },
+  {
+    texto:"What does Sara wish Andy would bring her?",
+    opciones:{A:"A bollycao", B:"Her medal from the Afflicted Brotherhood", C:"PlayStation games", D:"Another bollycao"},
+    puntos:{A:"aventurera", B:["conductora","ladrona"], C:"seria", D:["choni","chad"]}
+  },
+  {
+    texto:"What is the name of the famous shop in San Fernando where Sara's favorite pastries are?",
+    opciones:{A:"Mokalia", B:"Cash Fresh", C:"El Pilar", D:"Girl, what?"},
+    puntos:{A:"ladrona", B:"chad", C:"trabajadora", D:["seria","rapada"]}
+  },
+  {
+    texto:"What is your favorite dish by chef Sara?",
+    opciones:{A:"Leek toast (Palestinian style)", B:"Macaroni with lentils and veggies", C:"Anything, everything she makes is perfect", D:"Yoli's hummus"},
+    puntos:{A:"cantarina", B:"trabajadora", C:["aventurera","chad"], D:"conductora"}
+  },
+  {
+    texto:"What is your favorite game? (obviously one Sara plays)",
+    opciones:{A:"The Sims", B:"Don't bother me, just Parcheesi", C:"Clearly Rummikub", D:"Sara doesn't like games"},
+    puntos:{A:"aventurera", B:["choni","rapada"], C:"rapada", D:["seria","chad"]}
+  },
+  {
+    texto:"What was the name of Sara's yellow plant? (CHOOSE CAREFULLY)",
+    tipo:"quiz", correcta:"B",
+    opciones:{A:"Matilde", B:"Gerarda", C:"Violeta", D:"Margarita Kalifata"}
+  },
+  {
+    texto:"What was the name of the street where Sara and Ángel lived? (CHOOSE CAREFULLY)",
+    tipo:"quiz", correcta:"B",
+    opciones:{A:"Obviously Sierpes street", B:"Imperial Street", C:"Any street in Los Remedios, to get to the fair early", D:"Águilas Street"}
+  },
+  {
+    texto:"Where did Sara hide Andy's cake at Xino's field?",
+    opciones:{A:"Next to the contesa", B:"Under the car", C:"In the pool", D:"There was no cake, I don't know what you're talking about..."},
+    puntos:{A:"choni", B:"conductora", C:"aventurera", D:["seria","chad"]}
+  },
+  {
+    texto:"In which country did the tragic event happen where Javier missed the train buying ice cream?",
+    opciones:{A:"China", B:"Romania", C:"Peru", D:"How much longer is this?"},
+    puntos:{A:"ladrona", B:"cantarina", C:"rapada", D:["seria","chad"]}
+  }
+];
 
-    function responder(opcion) {
-      const pregunta = preguntas[indice];
+const resultadosES = {
+  aventurera:{
+    texto:"¡Enhorabuena! Te ha tocado la Sara aventurera. Siempre estás dispuestx a hacer locuritas y nunca dices que no a un plan. Eres una persona atrevida y sin miedo a NADA.",
+    imagenes:["img/aventurera.jpeg","img/kayakera.jpeg"]
+  },
+  cantarina:{
+    texto:"¡Enhorabuena! Te ha tocado la Sara cantarina. Eres una persona muy dulce, con una voz capaz de atraer y ensimismar a cualquier héroe mitológico. Tu voz es tan bonita que hasta los dioses la envidian...",
+    imagenes:["img/cantarinaProvisional.jpeg"]
+  },
+  chad:{
+    texto:"¡Enhorabuena! Te ha tocado la Sara chad. Eres una girlboss y nadie te llega a la suela de los zapatos. Sigue tal y como vas que la gente es muy envidiosa, y eso es signo de lo bien que haces las cosas.",
+    imagenes:["img/chad.jpeg"]
+  },
+  choni:{
+    texto:"¡Enhorabuena! Te ha tocado la Sara cani. Te encanta trashear y liarla, pero ojo no hay nada de malo en esto! Todos somos un poco malianteo a veces.",
+    imagenes:["img/choni.jpeg"]
+  },
+  conductora:{
+    texto:"¡Enhorabuena! Te ha tocado la Sara conductora. Pones la mejor música en el coche y eres el/la mejor copilotx. Espero que te hayas sacado el carné de coche a la primera también...",
+    imagenes:["img/conductora.jpeg"]
+  },
+  trabajadora:{
+    texto:"¡Enhorabuena! Te ha tocado la Sara currante. Eres una persona trabajadora y constante, que sabe fijarse sus objetivos y tiene las cosas claras. Tú si que te sabes la de trabajar.",
+    imagenes:["img/trabajadora.jpeg"]
+  },
+  rapada:{
+    texto:"¡Enhorabuena! Te ha tocado la Sara rapada. Te gusta cambiar tu estilo de pelo de vez en cuando. Eres una persona impulsiva y creativa, digna de admirar.",
+    imagenes:["img/rapada1.jpeg","img/rapada2.jpeg"]
+  },
+  seria:{
+    texto:"¡Enhorabuena! Te ha tocado la Sara seria. Bueno, no enhorabuena especialmente... Has respondido muy siesamente y Sara te juzga. Tal vez deberías responder otras opciones.",
+    imagenes:["img/seria.jpeg"]
+  },
+  dibujo:{
+    texto:"¡Enhorabuena! Te ha tocado la Sara dibujo...",
+    imagenes:["img/cantarinaProvisional.jpeg"]
+  }
+};
 
-      if (pregunta.tipo === "quiz") {
-        if (opcion !== pregunta.correcta) {
-          mostrarPregunta("¡MAL! Parece que no conoces la suficiente a Sara... Reintenta la pregunta, anda.");
-          return;
-        }
-      } else {
-        // Suma puntos al conteo
-        const veredicto = pregunta.puntos[opcion];
+const resultadosEN = {
+  aventurera:{
+    texto:"Congratulations! You got adventurous Sara. You are always up to any plan and do crazy stuff. You a brave person and fearless.",
+    imagenes:["img/aventurera.jpeg","img/kayakera.jpeg"]
+  },
+  cantarina:{
+    texto:"Congratulations! You got singing Sara. You are a very sweet person, with a voice capable of attracting every mythological heroe. Even gods are jealous of your tone...",
+    imagenes:["img/cantarinaProvisional.jpeg"]
+  },
+  chad:{
+    texto:"Congratulations! You got chad Sara. You are a girlboss and no one has a chance besides you. Keep doing what you are doing, people are so eny of you and that's a proof that you are doing great.",
+    imagenes:["img/chad.jpeg"]
+  },
+  choni:{
+    texto:"Congratulations! You got cani Sara. You love trashing and messing things up, but careful! There's nothing wrong with this. We are all a little bit trashy.",
+    imagenes:["img/choni.jpeg"]
+  },
+  conductora:{
+    texto:"Congratulations! You got driver Sara. You play the best music in the car and you are the best passenger princess. You better have passed your driver license at first try as well...",
+    imagenes:["img/conductora.jpeg"]
+  },
+  trabajadora:{
+    texto:"Congratulations! You got worker Sara. You are a very hard-working person, who knows to establish your aims.",
+    imagenes:["img/trabajadora.jpeg"]
+  },
+  rapada:{
+    texto:"Congratulations! You got buzzed Sara. You like to constantly change your hair-style sometimes. You are an impulsive person and very creative, worth to admire.",
+    imagenes:["img/rapada1.jpeg","img/rapada2.jpeg"]
+  },
+  seria:{
+    texto:"Congratulations! You got serious Sara. Well, not congratulations actually... You are no fun and Sara judges you. Maybe you should reply something else.",
+    imagenes:["img/seria.jpeg"]
+  },
+  dibujo:{
+    texto:"Congratulations! You got drawing Sara...",
+    imagenes:["img/cantarinaProvisional.jpeg"]
+  }
+};
 
-        if (Array.isArray(veredicto)) {
-          veredicto.forEach(v => { if (conteo[v] !== undefined) conteo[v]++; });
-        } else if (veredicto) {
-          if (conteo[veredicto] !== undefined) conteo[veredicto]++;
-        }
-      }
+function mostrarIdioma() {
+  app.innerHTML = `
+    <div class="card">
+      <h2>Elige idioma / Choose language</h2>
+      <div class="opciones">
+        <button onclick="elegirIdioma('ES')">Español</button>
+        <button onclick="elegirIdioma('EN')">English</button>
+      </div>
+    </div>
+  `;
+}
 
-      indice++;
+function elegirIdioma(seleccion) {
+  idioma = seleccion;
+  indice = 0;
+  for(let k in conteo) conteo[k]=0;
+  mostrarPregunta();
+}
 
-      if (indice < preguntas.length) {
-        mostrarPregunta();
-      } else {
-        mostrarResultado();
-      }
-    }
+function mostrarPregunta(mensaje="") {
+  const p = idioma==="EN"? preguntasEN[indice] : preguntasES[indice];
+  app.innerHTML = `
+    <div class="card">
+      ${mensaje?`<div class="mensaje-error">${mensaje}</div>`:""}
+      <h2>Pregunta ${indice+1} de ${idioma==="EN"? preguntasEN.length : preguntasES.length}</h2>
+      <p>${p.texto}</p>
+      <div class="opciones">
+        ${Object.entries(p.opciones).map(([k,t])=>`<button onclick="responder('${k}')">${k}) ${t}</button>`).join("")}
+      </div>
+    </div>
+  `;
+}
 
-    function reiniciar() {
-      indice = 0;
-      for (let key in conteo) conteo[key]=0;
-      mostrarPregunta();
-    }
+function responder(opcion) {
+  const p = idioma==="EN"? preguntasEN[indice] : preguntasES[indice];
+  if(p.tipo==="quiz" && opcion!==p.correcta) {
+    mostrarPregunta(idioma==="EN"?"Wrong! Try again.":"¡MAL! Reintenta la pregunta.");
+    return;
+  }
+  if(p.puntos) {
+    const v = p.puntos[opcion];
+    if(Array.isArray(v)) v.forEach(x=>conteo[x]!==undefined && conteo[x]++);
+    else if(v) conteo[v]!==undefined && conteo[v]++;
+  }
+  indice++;
+  if(indice < (idioma==="EN"? preguntasEN.length : preguntasES.length)) mostrarPregunta();
+  else mostrarResultado();
+}
 
-    function mostrarResultado() {
-      const veredictoFinal = Object.keys(conteo).reduce((a,b)=>conteo[a]>conteo[b]?a:b);
-      const resultados = {
-        aventurera: {
-          texto:"¡Enhorabuena! Te ha tocado la Sara aventurera. Siempre estás dispuestx a hacer locuritas y nunca dices que no a un plan. Eres una persona atrevida y sin miedo a NADA.",
-          imagenes: ["img/aventurera.jpeg", "img/kayakera.jpeg"]
-        },
-        cantarina: {
-          texto:"¡Enhorabuena! Te ha tocado la Sara cantarina. Eres una persona muy dulce, con una voz capaz de atraer y ensimismar a cualquier héroe mitológico. Tu voz es tan bonita que hasta los dioses la envidian...",
-          imagenes: ["img/cantarinaProvisional.jpeg"]
-        },
-        chad: {
-          texto:"¡Enhorabuena! Te ha tocado la Sara chad. Eres una girlboss y nadie te llega a la suela de los zapatos. Sigue tal y como vas que la gente es muy envidiosa, y eso es signo de lo bien que haces las cosas.",
-          imagenes: ["img/chad.jpeg"]
-        },
-        choni: {
-          texto:"¡Enhorabuena! Te ha tocado la Sara cani. Te encanta trashear y liarla, pero ojo no hay nada de malo en esto! Todos somos un poco malianteo a veces.",
-          imagenes: ["img/choni.jpeg"]
-        },
-        conductora: {
-          texto:"¡Enhorabuena! Te ha tocado la Sara conductora. Te encanta hacer de DJ en el coche y elegir la música. Espero que te hayas sacado el carné de coche a la primera también...",
-          imagenes: ["img/conductora.jpeg"]
-        },
-        dibujo: {
-          texto:"¡Enhorabuena! Te ha tocado la Sara dibujo. No se",
-          imagenes: ["img/cantarinaProvisional.jpeg"]
-        },
-        trabajadora: {
-          texto:"¡Enhorabuena! Te ha tocado la Sara currante. Eres una persona trabajadora y constante, que sabe fijarse sus objetivos y tiene las cosas claras. Tú si que te sabes la de trabajar.",
-          imagenes: ["img/trabajadora.jpeg"] 
-        },
-        seria: {
-          texto:"¡Enhorabuena! Te ha tocado la Sara seria. Bueno, no enhorabuena especialmente... Has respondido muy siesamente y Sara te juzga. Tal vez deberías responder otras opciones.",
-          imagenes: ["img/seria.jpeg"]
-        },
-        rapada: {
-          texto:"¡Enhorabuena! Te ha tocado la Sara rapada. Te gusta cambiar tu estilo de pelo de vez en cuando. Eres una persona impulsiva y creativa, digna de admirar.",
-          imagenes: ["img/rapada2.jpeg", "img/rapada1.jpeg"]
-        },
-      };
+function mostrarResultado() {
+  const veredictoFinal = Object.keys(conteo).reduce((a,b)=>conteo[a]>conteo[b]?a:b);
+  const resultados = idioma==="EN"? resultadosEN : resultadosES;
+  const res = resultados[veredictoFinal];
+  const img = res.imagenes[Math.floor(Math.random()*res.imagenes.length)];
+  app.innerHTML = `
+    <div class="card">
+      <h2>${idioma==="EN"? "Your result" : "Tu resultado"}</h2>
+      <p>${res.texto}</p>
+      <img src="${img}">
+    </div>
+  `;
+}
 
-      const resultado = resultados[veredictoFinal];
-      const imagenAleatoria =
-      resultado.imagenes[Math.floor(Math.random() * resultado.imagenes.length)];
-
-      app.innerHTML = `
-        <div class="card">
-          <h2>Tu resultado</h2>
-          <p>${resultados[veredictoFinal].texto}</p>
-          <img src="${imagenAleatoria}">
-        </div>
-      `;
-    }
-
-    mostrarPregunta();
-  </script>
+// Inicio
+mostrarIdioma();
+</script>
 </body>
 </html>
-
