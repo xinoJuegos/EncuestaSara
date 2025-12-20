@@ -44,30 +44,30 @@
             // PREGUNTA 1
       {
         texto: "¿Qué prefiere hacer Sara el fin de semana?",
-        opciones: { A:"Irse a la montaña de ruta", B:"Quedarse en casa viendo alguna serie", C:"Llamar a Xino pa que le traiga cosas", D:"Jugar a los bolos" },
-        puntos: { A:"aventurera", B:"cantarina", C:"trabajadora", D:"conductora" }
+        opciones: { A:"Irse a la montaña de ruta", B:"Quedarse en casa viendo alguna serie y canturreando como una sirena", C:"Llamar a Xino pa que le traiga cosas", D:"Jugar a los bolos" },
+        puntos: { A:"aventurera", B:"cantarina", C:["trabajadora", "ladrona"], D:"conductora" }
       },
             // PREGUNTA 2
       {
         texto: "¿Qué artistas del top en Spotify de Sara te gusta más?",
         opciones: { A:"Mitski", B:"Ethel Cain", C:"Taylor Swift", D:"Lana del Rey" },
-        puntos: { A:"cantarina", B:"ladrona", C:"conductora", D:"trabajadora" }
+        puntos: { A:"cantarina", B:["ladrona", "rapada"], C:"conductora", D:"trabajadora" }
       },
             // PREGUNTA 3
       {
-        texto: "¿Qué canción solía ponerse Sara para ir a clase y animarse la mañana?",
+        texto: "¿Qué canción solía ponerse Sara para ir a clase y animarse la mañana? (ELIGE BIEN)",
+        tipo:"quiz", correcta:"C",
         opciones: { A:"Can`t Stop The Feeling", B:"Saoko", C:"Happy", D:"¿Hola?" },
-        puntos: { A:"aventurera", B:"conductora", C:"cantarina", D:"seria" }
       },
             // PREGUNTA 4
       {
         texto: "¿Cuál es tu canción favorita de Sara en el piano?",
         opciones: { A:"Julia, es tu cumple", B:"Orilla", C:"Flow 2000", D:"Fiebre" },
-        puntos: { A:"choni", B: ["trabajadora", "ladrona"], C:"conductora", D:"choni" }
+        puntos: { A:"choni", B: ["trabajadora", "cantarina"], C:"conductora", D:["choni", "rapada"] }
       },
             // PREGUNTA 5
       {
-        texto: "Qué alimento/comida es famosamente conocido que Sara robe mientras su madre no mira? (solo una respuesta correcta)",
+        texto: "Qué alimento/comida es famosamente conocido que Sara robe mientras su madre no mira? (ELIGE BIEN)",
         tipo:"quiz", correcta:"D",
         opciones:{ A:"Hummus", B:"Guacamole", C:"Piquitos", D:"Croquetas" }
       },
@@ -75,35 +75,37 @@
       {
         texto: "¿Qué es lo que Sara ansía que le traiga Andy?",
         opciones:{ A:"Un bollycao", B:"SU medalla de la hermandad de Afligidos", C:"Juegos de la Play", D:"Otro bollycao" },
-        puntos: { A:"aventurera", B: "conductora", C:"ladrona", D:"choni" }
+        puntos: { A:"aventurera", B: ["conductora", "ladrona"], C:"seria", D:["choni", "chad"] }
       },
             // PREGUNTA 7
       {
         texto: "¿Cuál es el nombre del famoso establecimiento de San Fernando donde están los dulces que le gustan a Sara?",
         opciones:{ A:"Mokalia", B:"Cash Fresh", C:"El Pilar", D:"Pero qué me estás contando" },
-        puntos: { A: "ladrona", B: "cantarina", C:"trabajadora", D:"choni" }
+        puntos: { A: "ladrona", B: "chad", C:"trabajadora", D: ["seria", "rapada"]
+ }
       },
             // PREGUNTA 8
       {
         texto: "¿Cúal es tu plato favorito de la chef Sara?",
         opciones:{ A:"Tostadas puerro (estilo palestino)", B:"Macarrones con lentajas y verduritas", C:"Cualquiera, todo lo que hace es perfecto", D:"El hummus de Yoli" },
-        puntos: { A:"cantarina", B: "trabajadora", C:["choni", "ladrona"], D:"conductora" }
+        puntos: { A:"cantarina", B: "trabajadora", C:["aventurera", "chad"], D:"conductora" }
       },
             // PREGUNTA 9
       {
         texto: "¿Cuál es tu juego favorito? (obviamente de los que juega Sara)",
         opciones:{ A:"Los Sims", B:"No me rayes, el parchís y ya.", C:"Uf, claramente es el Rummikub", D:"A Sara no le gustan los juegos" },
-        puntos: { A: "trabajadora", B: "choni", C:"cantarina", D:"seria" }
+        puntos: { A: "aventurera", B: ["choni", "rapada"], C:"rapada", D: ["seria", "chad"]
+ }
       },
             // PREGUNTA 10
       {
-        texto: "Cuál era el nombre de la planta amarilla de Sara? (solo una respuesta correcta)",
+        texto: "Cuál era el nombre de la planta amarilla de Sara? (ELIGE BIEN)",
         tipo:"quiz", correcta:"B",
         opciones:{ A:"Matilde", B:"Gerarda", C:"Violeta", D:"Margarita Kalifata" }
       },
             // PREGUNTA 11
       {
-        texto: "¿Cómo se llamaba la calle donde vivían Sara y Ángel? (solo una respuesta correcta)",
+        texto: "¿Cómo se llamaba la calle donde vivían Sara y Ángel? (ELIGE BIEN)",
         tipo:"quiz", correcta:"B",
         opciones:{ A:"Claramente vivían en la calle Sierpes", B:"Calle Imperial", C:"En cualquier calle de los Remedios, para irse a la feria prontito", D:"Calle Águilas" }
       },
@@ -111,18 +113,19 @@
       {
         texto: "¿Dónde escondió Sara el bizcocho de Andy en campo Xino?",
         opciones:{ A:"Justo al lado de la contesa", B:"Debajo del coche", C:"En la piscina", D:"No había ningún bizcocho, no sé de que me estás hablando..." },
-        puntos: { A: "choni", B: "conductora", C:"cantarina", D:"seria" }
+        puntos: { A: "choni", B: "conductora", C:"aventurera", D:["seria", "chad"] }
       },
             // PREGUNTA 13
       {
         texto: "¿En qué país ocurrió el trágico evento donde Javier perdió el tren por ir a comprar unos helados?",
         opciones:{ A:"China", B:"Rumanía", C:"Perú", D:"Ofu cuánto le queda a esto" },
-        puntos: { A: "ladrona", B: "cantarina", C:"trabajadora", D:"seria" }
+        puntos: { A: "ladrona", B: "cantarina", C:"rapada", D: ["seria", "chad"]
+ }
       },
     ];
 
     let indice = 0;
-    const conteo = { cantarina:0, ladrona:0, conductora:0, choni:0, trabajadora:0, seria:0 };
+    const conteo = { aventurera:0, cantarina:0, chad:0, choni:0, conductora:0, dibujo:0, kayakera:0, rapada:0, seria:0, trabajadora:0, };
     const app = document.getElementById("app");
 
     function mostrarPregunta(mensaje="") {
@@ -144,24 +147,15 @@
 
       if (pregunta.tipo === "quiz") {
         if (opcion !== pregunta.correcta) {
-          app.innerHTML = `
-            <div class="card">
-              <div class="mensaje-error">
-                ¡MAL! Parece que no conoces la suficiente a Sara... Reintenta el cuestionario, anda.
-              </div>
-              <button onclick="reiniciar()">Reintentar</button>
-            </div>
-          `;
+          mostrarPregunta("¡MAL! Parece que no conoces la suficiente a Sara... Reintenta la pregunta, anda.");
           return;
         }
-
       } else {
+        // Suma puntos al conteo
         const veredicto = pregunta.puntos[opcion];
 
         if (Array.isArray(veredicto)) {
-          veredicto.forEach(v => {
-            if (conteo[v] !== undefined) conteo[v]++;
-          });
+          veredicto.forEach(v => { if (conteo[v] !== undefined) conteo[v]++; });
         } else if (veredicto) {
           if (conteo[veredicto] !== undefined) conteo[veredicto]++;
         }
@@ -176,7 +170,6 @@
       }
     }
 
-
     function reiniciar() {
       indice = 0;
       for (let key in conteo) conteo[key]=0;
@@ -186,21 +179,53 @@
     function mostrarResultado() {
       const veredictoFinal = Object.keys(conteo).reduce((a,b)=>conteo[a]>conteo[b]?a:b);
       const resultados = {
-        cantarina: { texto:"¡Enhorabuena! Te ha tocado la Sara cantarina.", imagen:"img/cantarinaProvisional.jpeg" },
-        ladrona: { texto:"¡Enhorabuena! Te ha tocado la Sara ladrona de croquetas.", imagen:"img/ladrona.jpeg" },
-        conductora: { texto:"¡Enhorabuena! Te ha tocado la Sara conductora.", imagen:"img/conductora.jpeg" },
-        choni: { texto:"¡Enhorabuena! Te ha tocado la Sara cani.", imagen:"img/choni.jpeg" },
-        trabajadora: { texto:"¡Enhorabuena! Te ha tocado la Sara currante. Eres una persona trabajadora y constante, que sabe fijarse sus objetivos y tiene las cosas claras.", imagen:"img/trabajadora.jpeg" },
-        seria: { texto:"¡Enhorabuena! Te ha tocado la Sara seria. Bueno, no enhorabuena especialmente... Has respondido muy siesamente y Sara te juzga. Tal vez deberías responder otras opciones.", imagen:"img/seria.jpeg" },
-        borracha: { texto:"¡Enhorabuena! Te ha tocado la Sara no se que poner. ola.", imagen:"img/borracha.jpeg" },
-        aventurera: { texto:"¡Enhorabuena! Te ha tocado la Sara aventurera. Siempre estás dispuestx a hacer locuritas y nunca dices que no a un plan.", imagen:"img/aventurera.jpeg" },
+        aventurera: {
+          texto:"¡Enhorabuena! Te ha tocado la Sara aventurera. Siempre estás dispuestx a hacer locuritas y nunca dices que no a un plan. Eres una persona atrevida y sin miedo a NADA.",
+          imagenes: ["img/aventurera.jpeg", "img/kayakera.jpeg"]
+        },
+        cantarina: {
+          texto:"¡Enhorabuena! Te ha tocado la Sara cantarina. Eres una persona muy dulce, con una voz capaz de atraer y ensimismar a cualquier héroe mitológico. Tu voz es tan bonita que hasta los dioses la envidian...",
+          imagenes: ["img/cantarinaProvisional.jpeg"]
+        },
+        chad: {
+          texto:"¡Enhorabuena! Te ha tocado la Sara chad. Eres una girlboss y nadie te llega a la suela de los zapatos. Sigue tal y como vas que la gente es muy envidiosa, y eso es signo de lo bien que haces las cosas.",
+          imagenes: ["img/chad.jpeg"]
+        },
+        choni: {
+          texto:"¡Enhorabuena! Te ha tocado la Sara cani. Te encanta trashear y liarla, pero ojo no hay nada de malo en esto! Todos somos un poco malianteo a veces.",
+          imagenes: ["img/choni.jpeg"]
+        },
+        conductora: {
+          texto:"¡Enhorabuena! Te ha tocado la Sara conductora. Te encanta hacer de DJ en el coche y elegir la música. Espero que te hayas sacado el carné de coche a la primera también...",
+          imagenes: ["img/conductora.jpeg"]
+        },
+        dibujo: {
+          texto:"¡Enhorabuena! Te ha tocado la Sara dibujo. No se",
+          imagenes: ["img/cantarinaProvisional.jpeg"]
+        },
+        trabajadora: {
+          texto:"¡Enhorabuena! Te ha tocado la Sara currante. Eres una persona trabajadora y constante, que sabe fijarse sus objetivos y tiene las cosas claras. Tú si que te sabes la de trabajar.",
+          imagenes: ["img/trabajadora.jpeg"] 
+        },
+        seria: {
+          texto:"¡Enhorabuena! Te ha tocado la Sara seria. Bueno, no enhorabuena especialmente... Has respondido muy siesamente y Sara te juzga. Tal vez deberías responder otras opciones.",
+          imagenes: ["img/seria.jpeg"]
+        },
+        rapada: {
+          texto:"¡Enhorabuena! Te ha tocado la Sara rapada. Te gusta cambiar tu estilo de pelo de vez en cuando. Eres una persona impulsiva y creativa, digna de admirar.",
+          imagenes: ["img/rapada2.jpeg", "img/rapada1.jpeg"]
+        },
       };
+
+      const resultado = resultados[veredictoFinal];
+      const imagenAleatoria =
+      resultado.imagenes[Math.floor(Math.random() * resultado.imagenes.length)];
 
       app.innerHTML = `
         <div class="card">
           <h2>Tu resultado</h2>
           <p>${resultados[veredictoFinal].texto}</p>
-          <img src="${resultados[veredictoFinal].imagen}">
+          <img src="${imagenAleatoria}">
         </div>
       `;
     }
