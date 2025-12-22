@@ -42,141 +42,288 @@
 <script>
 let idioma = null;
 let indice = 0;
-const conteo = { aventurera:0, cantarina:0, chad:0, choni:0, conductora:0, dibujo:0, kayakera:0, rapada:0, seria:0, trabajadora:0 };
+const conteo = { aventurera:0, cantarina:0, chad:0, choni:0, conductora:0, ladrona:0, rapada:0, seria:0, trabajadora:0 };
 const app = document.getElementById("app");
 
 const preguntasES = [
   {
+    // PREGUNTA 1
     texto:"¿Qué prefiere hacer Sara el fin de semana?",
     opciones:{A:"Irse a la montaña de ruta", B:"Quedarse en casa viendo alguna serie y canturreando como una sirena", C:"Llamar a Xino pa que le traiga cosas", D:"Jugar a los bolos"},
     puntos:{A:"aventurera", B:"cantarina", C:["trabajadora","ladrona"], D:"conductora"}
   },
   {
+    // PREGUNTA 2
     texto:"¿Qué artistas del top en Spotify de Sara te gusta más?",
     opciones:{A:"Mitski", B:"Ethel Cain", C:"Taylor Swift", D:"Lana del Rey"},
     puntos:{A:"cantarina", B:["ladrona","rapada"], C:"conductora", D:"trabajadora"}
   },
   {
+    // PREGUNTA 3
     texto:"¿Qué canción solía ponerse Sara para ir a clase y animarse la mañana? (ELIGE BIEN)",
     tipo:"quiz", correcta:"C",
     opciones:{A:"Can`t Stop The Feeling", B:"Saoko", C:"Happy", D:"¿Hola?"}
   },
   {
+    // PREGUNTA 4
     texto:"¿Cuál es tu canción favorita de Sara en el piano?",
     opciones:{A:"Julia, es tu cumple", B:"Orilla", C:"Flow 2000", D:"Fiebre"},
     puntos:{A:"choni", B:["trabajadora","cantarina"], C:"conductora", D:["choni","rapada"]}
   },
   {
+    // PREGUNTA 5
     texto:"Qué alimento/comida es famosamente conocido que Sara robe mientras su madre no mira? (ELIGE BIEN)",
     tipo:"quiz", correcta:"D",
     opciones:{A:"Hummus", B:"Guacamole", C:"Piquitos", D:"Croquetas"}
   },
   {
+    // PREGUNTA 6
     texto:"¿Qué es lo que Sara ansía que le traiga Andy?",
     opciones:{A:"Un bollycao", B:"SU medalla de la hermandad de Afligidos", C:"Juegos de la Play", D:"Otro bollycao"},
     puntos:{A:"aventurera", B:["conductora","ladrona"], C:"seria", D:["choni","chad"]}
   },
   {
+    // PREGUNTA 7
     texto:"¿Cuál es el nombre del famoso establecimiento de San Fernando donde están los dulces que le gustan a Sara?",
-    opciones:{A:"Mokalia", B:"Cash Fresh", C:"El Pilar", D:"Pero qué me estás contando"},
+    opciones:{A:"Bongout", B:"Cash Fresh", C:"El Pilar", D:"Pero qué me estás contando"},
     puntos:{A:"ladrona", B:"chad", C:"trabajadora", D:["seria","rapada"]}
   },
   {
+    // PREGUNTA 8
     texto:"¿Cuál es tu plato favorito de la chef Sara?",
     opciones:{A:"Tostadas puerro (estilo palestino)", B:"Macarrones con lentajas y verduritas", C:"Cualquiera, todo lo que hace es perfecto", D:"El hummus de Yoli"},
     puntos:{A:"cantarina", B:"trabajadora", C:["aventurera","chad"], D:"conductora"}
   },
   {
+    // PREGUNTA 9
     texto:"¿Cuál es tu juego favorito? (obviamente de los que juega Sara)",
     opciones:{A:"Los Sims", B:"No me rayes, el parchís y ya.", C:"Uf, claramente es el Rummikub", D:"A Sara no le gustan los juegos"},
     puntos:{A:"aventurera", B:["choni","rapada"], C:"rapada", D:["seria","chad"]}
   },
   {
+    // PREGUNTA 10
     texto:"Cuál era el nombre de la planta amarilla de Sara? (ELIGE BIEN)",
     tipo:"quiz", correcta:"B",
     opciones:{A:"Matilde", B:"Gerarda", C:"Violeta", D:"Margarita Kalifata"}
   },
   {
-    texto:"¿Cómo se llamaba la calle donde vivían Sara y Ángel? (ELIGE BIEN)",
+    // PREGUNTA 11
+    texto:"¿Cómo se llamaba la calle donde vivían Sara y Ángel?",
     tipo:"quiz", correcta:"B",
     opciones:{A:"Claramente vivían en la calle Sierpes", B:"Calle Imperial", C:"En cualquier calle de los Remedios, para irse a la feria prontito", D:"Calle Águilas"}
   },
   {
+    // PREGUNTA 12
     texto:"¿Dónde escondió Sara el bizcocho de Andy en campo Xino?",
     opciones:{A:"Justo al lado de la contesa", B:"Debajo del coche", C:"En la piscina", D:"No había ningún bizcocho, no sé de que me estás hablando..."},
-    puntos:{A:"choni", B:"conductora", C:"aventurera", D:["seria","chad"]}
+    puntos:{A:"choni", B:"conductora", C:"aventurera", D:"seria"}
   },
   {
+    // PREGUNTA 13
     texto:"¿En qué país ocurrió el trágico evento donde Javier perdió el tren por ir a comprar unos helados?",
     opciones:{A:"China", B:"Rumanía", C:"Perú", D:"Ofu cuánto le queda a esto"},
-    puntos:{A:"ladrona", B:"cantarina", C:"rapada", D:["seria","chad"]}
+    puntos:{A:"ladrona", B:"cantarina", C:"rapada", D:"seria"}
+  },
+  {
+    // PREGUNTA 14
+    texto:"¿En qué ciudad que visitó Sara en un viaje de conservatorio aconteció un hecho histórico por el cual Sahe sería casado posteriormente con un sujeto llamado 'Gaby'?",
+    opciones:{A:"Córdoba", B:"Granada", C:"Miami", D:"Isla Perejil"},
+    puntos:{A:"trabajadora", B:"aventurera", C:"chad", D:"rapada"}
+  },
+  {
+    // PREGUNTA 15
+    texto:"¿A qué libro hace referencia Xino cuando dice que Sara es la reina justa? (ELIGE BIEN)",
+    tipo:"quiz", correcta:"C",
+    opciones:{A:"El Señor de los Anillos", B:"Crónicas de Narnia", C:"El Principito", D:"Tea Stilton"}
+  },
+  {
+    // PREGUNTA 16
+    texto:"¿Cuál de estos compañeros de clase a los que se ha enfrentado Sara te cae peor?",
+    opciones:{A:"Carloma", B:"Jorge", C:"No conozco a ninguno", D:"Dani Ruiz"},
+    puntos:{A:"ladrona", B:"choni", C:"seria", D:["aventurera", "trabajadora"]}
+  },
+  {
+    // PREGUNTA 17
+    texto:"¿Cuál de estos hairstyles te gustan más de Sara?",
+    opciones:{A:"Rapada", B:"Melena larga", C:"Pelo azul + violeta", D:"Todos los quedan divinos"},
+    puntos:{A:"rapada", B:"choni", C:"ladrona", D:"chad"}
+  },
+  {
+    // PREGUNTA 18
+    texto:"¿Cómo se llama el personaje que retrata Sara en sus dibujos jugando al Pictionary/Pinturillo/Skribble...?",
+    opciones:{A:"Trixie", B:"Jessie", C:"Miriam", D:"Mikaela"},
+    puntos:{A:"rapada", B:"choni", C:"seria", D:"seria"}
+  },
+  {
+    // PREGUNTA 19
+    texto:"En 2020, yendo a hacerse la foto de la orla con sus amigos, Sara subió una historia con un filtro 'Rate Your Face'. ¿Qué puntuación obtuvo? (ELIGE BIEN)",
+    tipo:"quiz", correcta:"B",
+    opciones:{A:"10", B:"Kylie Jenner", C:"100", D:"1000"}
+  },
+  {
+    // PREGUNTA 20
+    texto:"¿Qué canción coreografiaron Conchi, Sara y sus amigos en la anterior reunión?",
+    opciones:{A:"Dancing Queen", B:"Waterloo", C:"The Winner Takes It All", D:"Gasolina"},
+    puntos:{A:"cantarina", B:"ladrona", C:"seria", D:"choni"}
+  },
+  {
+    // PREGUNTA 21
+    texto:"¿Qué pieza interpretó Sara a violín en una graduación en el salón de actos del Isla de León?",
+    opciones:{A:"Introduction et Rondo capriccioso - Saint-Säens", B:"Tusa - Karol G", C:"Czardas - Monti", D:"Wonderwall - Oasis"},
+    puntos:{A:"trabajadora", B:"choni", C:"conductora", D:"chad"}
+  },
+  {
+    // PREGUNTA 22
+     texto:"¿Qué libro spoileó Sahe a Sara en 1º de ESO? (ELIGE BIEN)",
+    tipo:"quiz", correcta:"B",
+    opciones:{A:"El señor de las moscas", B:"Percy Jackson y el ladrón del rayo", C:"Un mundo feliz", D:"1984"}
+  },
+  {
+    // PREGUNTA 23
+    texto:"¿Cuál de estos influencers que ve Sara es tu favoritx?",
+    opciones:{A:"Esty Quesada", B:"Junior Healy", C:"James Rodriguez", D:"Chica, quiénes son estos"},
+    puntos:{A:"chad", B:"rapada", C:"cantarina", D:"seria"}
   }
 ];
 
 const preguntasEN = [
-  { texto:"What does Sara prefer to do on the weekend?",
-  opciones:{A:"Go hiking in the mountains", B:"Stay home watching some TV series and singing like a mermaid", C:"Call Xino to bring her things", D:"Play bowling"},
-  puntos:{A:"aventurera", B:"cantarina", C:["trabajadora","ladrona"], D:"conductora"}
-},
   {
+    // QUESTION 1
+    texto:"What does Sara prefer to do on the weekend?",
+    opciones:{A:"Go hiking in the mountains", B:"Stay home watching some TV series and singing like a mermaid", C:"Call Xino to bring her things", D:"Play bowling"},
+    puntos:{A:"aventurera", B:"cantarina", C:["trabajadora","ladrona"], D:"conductora"}
+  },
+  {
+    // QUESTION 2
     texto:"Which artists from Sara's Spotify top do you like the most?",
     opciones:{A:"Mitski", B:"Ethel Cain", C:"Taylor Swift", D:"Lana del Rey"},
     puntos:{A:"cantarina", B:["ladrona","rapada"], C:"conductora", D:"trabajadora"}
   },
   {
+    // QUESTION 3
     texto:"Which song did Sara usually listen to before class to cheer herself up? (CHOOSE CAREFULLY)",
     tipo:"quiz", correcta:"C",
     opciones:{A:"Can`t Stop The Feeling", B:"Saoko", C:"Happy", D:"Hello?"}
   },
   {
+    // QUESTION 4
     texto:"Which is your favorite Sara song on the piano?",
     opciones:{A:"Julia, it's your birthday", B:"Orilla", C:"Flow 2000", D:"Fiebre"},
     puntos:{A:"choni", B:["trabajadora","cantarina"], C:"conductora", D:["choni","rapada"]}
   },
   {
+    // QUESTION 5
     texto:"Which food/snack is famously known that Sara steals when her mom is not looking? (CHOOSE CAREFULLY)",
     tipo:"quiz", correcta:"D",
     opciones:{A:"Hummus", B:"Guacamole", C:"Piquitos", D:"Croquetas"}
   },
   {
+    // QUESTION 6
     texto:"What does Sara wish Andy would bring her?",
     opciones:{A:"A bollycao", B:"Her medal from the Afflicted Brotherhood", C:"PlayStation games", D:"Another bollycao"},
     puntos:{A:"aventurera", B:["conductora","ladrona"], C:"seria", D:["choni","chad"]}
   },
   {
+    // QUESTION 7
     texto:"What is the name of the famous shop in San Fernando where Sara's favorite pastries are?",
     opciones:{A:"Mokalia", B:"Cash Fresh", C:"El Pilar", D:"Girl, what?"},
     puntos:{A:"ladrona", B:"chad", C:"trabajadora", D:["seria","rapada"]}
   },
   {
+    // QUESTION 8
     texto:"What is your favorite dish by chef Sara?",
     opciones:{A:"Leek toast (Palestinian style)", B:"Macaroni with lentils and veggies", C:"Anything, everything she makes is perfect", D:"Yoli's hummus"},
     puntos:{A:"cantarina", B:"trabajadora", C:["aventurera","chad"], D:"conductora"}
   },
   {
+    // QUESTION 9
     texto:"What is your favorite game? (obviously one Sara plays)",
     opciones:{A:"The Sims", B:"Don't bother me, just Parcheesi", C:"Clearly Rummikub", D:"Sara doesn't like games"},
     puntos:{A:"aventurera", B:["choni","rapada"], C:"rapada", D:["seria","chad"]}
   },
   {
+    // QUESTION 10
     texto:"What was the name of Sara's yellow plant? (CHOOSE CAREFULLY)",
     tipo:"quiz", correcta:"B",
     opciones:{A:"Matilde", B:"Gerarda", C:"Violeta", D:"Margarita Kalifata"}
   },
   {
+    // QUESTION 11
     texto:"What was the name of the street where Sara and Ángel lived? (CHOOSE CAREFULLY)",
     tipo:"quiz", correcta:"B",
     opciones:{A:"Obviously Sierpes street", B:"Imperial Street", C:"Any street in Los Remedios, to get to the fair early", D:"Águilas Street"}
   },
   {
+    // QUESTION 12
     texto:"Where did Sara hide Andy's cake at Xino's field?",
     opciones:{A:"Next to the contesa", B:"Under the car", C:"In the pool", D:"There was no cake, I don't know what you're talking about..."},
-    puntos:{A:"choni", B:"conductora", C:"aventurera", D:["seria","chad"]}
+    puntos:{A:"choni", B:"conductora", C:"aventurera", D:"seria"}
   },
   {
+    // QUESTION 13
     texto:"In which country did the tragic event happen where Javier missed the train buying ice cream?",
     opciones:{A:"China", B:"Romania", C:"Peru", D:"How much longer is this?"},
-    puntos:{A:"ladrona", B:"cantarina", C:"rapada", D:["seria","chad"]}
+    puntos:{A:"ladrona", B:"cantarina", C:"rapada", D:"seria"}
+  },
+  {
+    // QUESTION 14
+    texto:"What city did Sara visit with her music school when a historical event happened (Sahe would be later married with a subject called 'Gaby')?",
+    opciones:{A:"Córdoba", B:"Granada", C:"Miami", D:"Isla Perejil"},
+    puntos:{A:"trabajadora", B:"aventurera", C:"chad", D:"rapada"}
+  },
+  {
+    // QUESTION 15
+    texto:"What book does Xino reference when calling Sara 'righteous queen'? (CHOOSE CAREFULLY)",
+    tipo:"quiz", correcta:"C",
+    opciones:{A:"The Lord of the Rings", B:"The Chronicles of Narnia", C:"The Little Prince", D:"Tea Stilton"}
+  },
+  {
+    // QUESTION 16
+    texto:"Which of these Sara's classmates that she faced do you hate the most?",
+    opciones:{A:"Carloma", B:"Jorge", C:"No conozco a ninguno", D:"Dani Ruiz"},
+    puntos:{A:"ladrona", B:"choni", C:"seria", D:["aventurera", "trabajadora"]}
+  },
+  {
+    // PREGUNTA 17
+    texto:"Which one of these Sara's hairtsyles do you like the most?",
+    opciones:{A:"Buzzcut", B:"long long hair", C:"Blue + Purple", D:"Everyone is perfect for her"},
+    puntos:{A:"rapada", B:"choni", C:"ladrona", D:"chad"}
+  },
+  {
+    // QUESTION 18
+    texto:"What is the character that Sara portays in her drawings called? (Pictionary/Pinturillo/Skribble...)",
+    opciones:{A:"Trixie", B:"Jessie", C:"Miriam", D:"Mikaela"},
+    puntos:{A:"rapada", B:"choni", C:"seria", D:"seria"}
+  },
+  {
+    // QUESTION 19
+    texto:"In 2020, while going to take a picture for her high school graduation photo, Sara posted a story with a filter called 'Rate Your Face'. What rating did she get? (CHOOSE CAREFULLY)",
+    tipo:"quiz", correcta:"B",
+    opciones:{A:"10", B:"Kylie Jenner", C:"100", D:"1000"}
+  },
+  {
+    // QUESTION 20
+    texto:"What song did Conchi, Sara and her friends dance in the last meeting?",
+    opciones:{A:"Dancing Queen", B:"Waterloo", C:"The Winner Takes It All", D:"Gasolina"},
+    puntos:{A:"cantarina", B:"ladrona", C:"seria", D:"choni"}
+  },
+  {
+    // QUESTION 21
+    texto:"What piece did Sara play in a graduation in high school?",
+    opciones:{A:"Introduction et Rondo capriccioso - Saint-Säens", B:"Tusa - Karol G", C:"Czardas - Monti", D:"Wonderwall - Oasis"},
+    puntos:{A:"trabajadora", B:"choni", C:"conductora", D:"chad"}
+  },
+  {
+    // QUESTION 22
+     texto:"What book did Sahe spoil to Sara in the first year of high school? (CHOOSE CAREFULLY)",
+    tipo:"quiz", correcta:"B",
+    opciones:{A:"El señor de las moscas", B:"Percy Jackson y el ladrón del rayo", C:"Un mundo feliz", D:"1984"}
+  },
+  {
+    // QUESTION 23
+    texto:"Which of these influencers that Sara watches is your favorite?",
+    opciones:{A:"Esty Quesada", B:"Junior Healy", C:"James Rodriguez", D:"Samantha Ballantines"},
+    puntos:{A:"chad", B:"rapada", C:"cantarina", D:"seria"}
   }
 ];
 
@@ -187,7 +334,7 @@ const resultadosES = {
   },
   cantarina:{
     texto:"¡Enhorabuena! Te ha tocado la Sara cantarina. Eres una persona muy dulce, con una voz capaz de atraer y ensimismar a cualquier héroe mitológico. Tu voz es tan bonita que hasta los dioses la envidian...",
-    imagenes:["img/cantarinaProvisional.jpeg"]
+    imagenes:["img/cantarinaProvisional.jpeg", "dibujo.jpeg"]
   },
   chad:{
     texto:"¡Enhorabuena! Te ha tocado la Sara chad. Eres una girlboss y nadie te llega a la suela de los zapatos. Sigue tal y como vas que la gente es muy envidiosa, y eso es signo de lo bien que haces las cosas.",
@@ -201,6 +348,10 @@ const resultadosES = {
     texto:"¡Enhorabuena! Te ha tocado la Sara conductora. Pones la mejor música en el coche y eres el/la mejor copilotx. Espero que te hayas sacado el carné de coche a la primera también...",
     imagenes:["img/conductora.jpeg"]
   },
+  ladrona:{
+    texto:"¡Enhorabuena! Te ha tocado la Sara ladrona de croquetas. No te juzgo, yo también moriría por una de las croquetas de Yoli.",
+    imagenes:["img/ladrona.jpeg"]
+  },
   trabajadora:{
     texto:"¡Enhorabuena! Te ha tocado la Sara currante. Eres una persona trabajadora y constante, que sabe fijarse sus objetivos y tiene las cosas claras. Tú si que te sabes la de trabajar.",
     imagenes:["img/trabajadora.jpeg"]
@@ -212,10 +363,6 @@ const resultadosES = {
   seria:{
     texto:"¡Enhorabuena! Te ha tocado la Sara seria. Bueno, no enhorabuena especialmente... Has respondido muy siesamente y Sara te juzga. Tal vez deberías responder otras opciones.",
     imagenes:["img/seria.jpeg"]
-  },
-  dibujo:{
-    texto:"¡Enhorabuena! Te ha tocado la Sara dibujo...",
-    imagenes:["img/cantarinaProvisional.jpeg"]
   }
 };
 
@@ -226,7 +373,7 @@ const resultadosEN = {
   },
   cantarina:{
     texto:"Congratulations! You got singing Sara. You are a very sweet person, with a voice capable of attracting every mythological heroe. Even gods are jealous of your tone...",
-    imagenes:["img/cantarinaProvisional.jpeg"]
+    imagenes:["img/dibujo.jpeg"]
   },
   chad:{
     texto:"Congratulations! You got chad Sara. You are a girlboss and no one has a chance besides you. Keep doing what you are doing, people are so eny of you and that's a proof that you are doing great.",
@@ -240,6 +387,10 @@ const resultadosEN = {
     texto:"Congratulations! You got driver Sara. You play the best music in the car and you are the best passenger princess. You better have passed your driver license at first try as well...",
     imagenes:["img/conductora.jpeg"]
   },
+  ladrona:{
+    texto:"Congratulations! You got Sara the croquetas stealer. I can't judge you, those are some croquetas to die for.",
+    imagenes:["img/ladrona.jpeg"]
+  },
   trabajadora:{
     texto:"Congratulations! You got worker Sara. You are a very hard-working person, who knows to establish your aims.",
     imagenes:["img/trabajadora.jpeg"]
@@ -251,16 +402,15 @@ const resultadosEN = {
   seria:{
     texto:"Congratulations! You got serious Sara. Well, not congratulations actually... You are no fun and Sara judges you. Maybe you should reply something else.",
     imagenes:["img/seria.jpeg"]
-  },
-  dibujo:{
-    texto:"Congratulations! You got drawing Sara...",
-    imagenes:["img/cantarinaProvisional.jpeg"]
   }
 };
 
 function mostrarIdioma() {
   app.innerHTML = `
     <div class="card">
+      <h2>¡Bienvenidx! Este es un test que pondrá a prueba tu conocimiento sobre Sara. No te pongas nerviosx y no... la... caguéis.</h2>
+      <h2>Welcome! This a test that will prove your knowlewdge about Sara. Don't get nervous and don't... fuck... it up.</h2>
+
       <h2>Elige idioma / Choose language</h2>
       <div class="opciones">
         <button onclick="elegirIdioma('ES')">Español</button>
